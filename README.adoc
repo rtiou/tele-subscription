@@ -1,0 +1,94 @@
+= Subscription Service
+Ronaldo Lien Tiou <ronaldotiou@gmail.com>
+:toc: left
+
+:summary: Simple implementation of Subscription System with CRUD operations.
+
+== Overview
+This application is a simple Subscription System to perform some actions.
+
+== Architecture & Design
+This section describes this project architecture and design.
+
+=== Technology Stack & Requirements
+
+ * link:http://www.oracle.com/technetwork/java/javase/downloads/jdk8-downloads-2133151.html[Java 8]
+ * link:https://projects.spring.io/spring-boot/[Spring Boot]
+ * link:https://spring.io/guides/gs/circuit-breaker/[Circuit Break]
+ * link:http://www.h2database.com/html/main.html[H2 Database]
+ * link:http://projectlombok.org/features/index.html[Project Lombok]
+ * link:https://maven.apache.org[Maven]
+
+
+=== Packages
+.Packages structure and content
+[source,yaml]
+----
+com.ronaldotiou // <1>
+com.ronaldotiou.controller // <2>
+com.ronaldotiou.domain // <3>
+com.ronaldotiou.jpa // <4>
+com.ronaldotiou.service // <5>
+----
+<1> Root package stores the StartUp class
+
+<2> All the controller classes.
+
+<3> All the domain classes.
+
+<5> Services and Handlers that execute the crud operations.
+
+<4> All the data model used in the application such as the REST API response and the storage layer.
+
+=== Configuration properties
+The current implementation favors convention over configuration and is designed to get you up and running as quickly
+as possible
+
+== Build & Run
+This section describes how to build and run the application.
+Run the following commands in the root folder of the project.
+
+.Build
+[source,bash]
+----
+$ ./mvn clean package
+----
+
+.Run
+[source,bash]
+----
+$ java -jar target/tele-subscription.jar
+----
+
+=== [IMPORTANT]
+* By default the application will be running in the port *8080*.
+
+
+== Endpoint's
+This system provide 4 endpoint to manager the subscription:
+
+=== Get a list of all subscriptions in the system
+http://localhost:8080/api/subscription
+
+=== Get a specific subscription ID
+http://localhost:8080/api/subscription/subscription_id
+
+=== Update a specific subscription
+
+Into the body with the subscription with new value. Using a PUT http method.
+
+http://localhost:8080/api/subscription/subscription_id
+
+=== Create a new subscription
+Into the body with the new subscription. Using a POST http method.
+
+http://localhost:8080/api/subscription/
+
+== Extra information
+=== Adding Project Lombok Agent
+This project uses link:http://projectlombok.org/features/index.html[Project Lombok]
+to generate getters and setters etc. Compiling from the command line this
+shouldn't cause any problems, but in an IDE you need to add an agent
+to the JVM. Full instructions can be found in the Lombok website. The
+sign that you need to do this is a lot of compiler errors to do with
+missing methods and fields.

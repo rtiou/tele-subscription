@@ -1,0 +1,12 @@
+version: '1'
+services:
+    config-server:
+        container_name: tele-subscription-service
+        build:
+            context: .
+            dockerfile: Dockerfile
+        image: tele-subscription-service:latest
+        expose:
+            - 8080
+        logging:
+            driver: json-file
